@@ -22,6 +22,15 @@ python3 main.py --image images/ufanet2.png --video videos/ufanet2.mp4 --data dat
 Выход из скрипта создания координат, клавиша Q.
 
 
+## DetectParking
+
+Создан yml файл для демо видео datasets/ufanet2.yml
+
+```
+cd DetectParking/python
+python ufanet.py
+```
+
 
 #### Другие не исследованные
 
@@ -32,7 +41,10 @@ python3 main.py --image images/ufanet2.png --video videos/ufanet2.mp4 --data dat
 * https://github.com/lalona/parking-spot-classifier
 * https://github.com/amiltonwong/mil_deep_park
 * https://github.com/Pranalirawool/parkingApp
-*
+* https://towardsdatascience.com/find-where-to-park-in-real-time-using-opencv-and-tensorflow-4307a4c3da03
+* * https://github.com/priya-dwivedi/Deep-Learning/blob/master/parking_spots_detector/identify_parking_spots.ipynb
+* https://medium.com/geoai/parking-lot-vehicle-detection-using-deep-learning-49597917bc4a
+
 
 OpenCV:
 
@@ -42,6 +54,15 @@ OpenCV:
 * https://github.com/csaiprashant/parking_lot_vacancy_detector
 * https://github.com/luispaulot/DetectParking
 
+Map car detector:
+
+* https://github.com/ahmetozlu/vehicle_counting_tensorflow
+* https://github.com/xiaochus/Vehicle_Tracking
+
+Статьи:
+
+* https://github.com/rugbyprof/Parking-Lot-Occupancy-Tracking
+* https://lafi.github.io/LPN/
 
 
 
