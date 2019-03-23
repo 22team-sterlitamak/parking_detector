@@ -8,11 +8,11 @@ import cv2
 fn = r"../../videos/ufanet2.mp4"
 # fn_yaml = r"../datasets/CUHKSquare.yml"
 fn_yaml = r"../datasets/ufanet2.yml"
-fn_out = r"../../videos/DetectParking_output.avi"
+fn_out = r"../datasets/DetectParking_output.mp4"
 config = {'save_video': True,
           'text_overlay': True,
           'parking_overlay': True,
-          'parking_id_overlay': False,
+          'parking_id_overlay': True,
           'parking_detection': True,
           'min_area_motion_contour': 60,
           'park_sec_to_wait': 3,
