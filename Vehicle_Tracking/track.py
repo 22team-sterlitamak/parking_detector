@@ -102,10 +102,12 @@ def track(video, iou):
         dilated = cv2.dilate(th, cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (8, 3)), iterations=2)
         image, contours, hier = cv2.findContours(dilated, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
 
+        track_list=[]
         # Check the bouding boxs
         for c in contours:
             x, y, w, h = cv2.boundingRect(c)
-            if cv2.contourArea(c) > 3000:
+            print('area:', cv2.contourArea(c))
+            if cv2.contourArea(c) > 500 and cv2.contourArea(c) < 700:
                 # Extract roi
                 img = frame[y: y + h, x: x + w, :]
                 rimg = cv2.resize(img, (64, 64), interpolation=cv2.INTER_CUBIC)
@@ -113,33 +115,36 @@ def track(video, iou):
                 image_data /= 255.
                 roi = np.expand_dims(image_data, axis=0)
                 flag = model.predict(roi)
+                print(flag)
 
-                if flag[0][0] > 0.5:
+                if flag[0][0] < 0.4:
                     e = Entity(counter, (x, y, w, h), frame)
+                    track_list.append(e)
 
                     # Exclude existing targets in the tracking list
-                    if track_list:
-                        count = 0
-                        num = len(track_list)
-                        for p in track_list:
-                            if overlap((x, y, w, h), p.windows) < iou:
-                                count += 1
-                        if count == num:
-                            track_list.append(e)
-                    else:
-                        track_list.append(e)
-                    counter += 1
+                    # if track_list:
+                    #     count = 0
+                    #     num = len(track_list)
+                    #     for p in track_list:
+                    #         if overlap((x, y, w, h), p.windows) < iou:
+                    #             count += 1
+                    #     if count == num:
+                    #         track_list.append(e)
+                    # else:
+                    #     track_list.append(e)
+                    # counter += 1
 
         # Check and update goals
-        if track_list:
-            tlist = copy.copy(track_list)
-            for e in tlist:
-                x, y = e.center
-                if 10 < x < x_size - 10 and 10 < y < y_size - 10:
-                    e.update(frame)
-                else:
-                    track_list.remove(e)
-        frames += 1
+        # if track_list:
+        #     tlist = copy.copy(track_list)
+        #     for e in tlist:
+        #         x, y = e.center
+        #         if 10 < x < x_size - 10 and 10 < y < y_size - 10:
+        #             e.update(frame)
+        #         else:
+        #             track_list.remove(e)
+        # frames += 1
+
         cv2.imshow("detection", frame)
         if cv2.waitKey(110) & 0xff == 27:
             break

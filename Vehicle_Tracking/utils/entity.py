@@ -40,3 +40,4 @@ class Entity(object):
             cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 0), 1)
             cv2.putText(frame, "vehicle", (x, y - 5), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 1, cv2.LINE_AA)
             cv2.polylines(frame, [np.int32(self.trajectory)], 0, (0, 0, 255))
+        return
