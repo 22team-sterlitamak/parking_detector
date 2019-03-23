@@ -31,6 +31,18 @@ cd DetectParking/python
 python ufanet.py
 ```
 
+## Vechicle_Tracking
+
+Не работает на статичных машинах нейронка.
+
+Завелась только с
+```
+opencv-contrib-python==3.3.1.11
+Keras==1.2.2
+tensorflow==1.13.1
+```
+и изменить на  tracker = cv2.TrackerKCF_create()
+
 
 #### Другие не исследованные
 
